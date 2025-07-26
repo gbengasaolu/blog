@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Just Grow – Motivation & Personal Development</title>
+  <meta name="description" content="Motivational and personal‑development articles by Dr. Olugbenga Asaolu. Read the latest posts, browse the archive, and explore press mentions." />
+  <meta name="theme-color" content="#0F766E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Marked for Markdown rendering (small, no build step) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    /* =========================
+       THEME & RESET
+       ========================= */
+    :root {
+      --brand: #0F766E;               /* Accent color (configurable) */
+      --bg: #ffffff;
+      --text: #1f2937;                /* gray-800 */
+      --muted: #6b7280;               /* gray-500 */
+      --card: #ffffff;
+      --border: #e5e7eb;              /* gray-200 */
+      --shadow: 0 8px 24px rgba(0,0,0,.07);
+      --radius: 14px;
+      --focus: 2px solid #0ea5e9;     /* sky-500 */
+    }
+    [data-theme="dark"] {
+      --bg: #0b1220;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #0f172a;                /* slate-900 */
+      --border: #1f2937;
+      --shadow: 0 8px 24px rgba(0,0,0,.4);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--brand); text-decoration: none; }
+    a:focus { outline: var(--focus); outline-offset: 2px; }
+    button { font: inherit; }
+
+    /* =========================
+       LAYOUT
+       ========================= */
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+    header.site-header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: saturate(1.2) blur(6px);
+      background: color-mix(in srgb, var(--bg) 84%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0; gap: .75rem; }
+    .logo { display: inline-flex; align-items: center; gap: .6rem; font-weight: 700; }
+    .logo img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+    .logo .brand { font-family: "Playfair Display", Georgia, serif; font-size: 1.1rem; letter-spacing: .2px; }
+    .nav a { color: var(--text); font-weight: 600; }
+    .nav-links { display: flex; gap: 1rem; align-items: center; }
+    .theme-toggle { border: 1px solid var(--border); background: var(--card); color: var(--text); padding: .45rem .7rem; border-radius: 999px; cursor: pointer; box-shadow: var(--shadow); }
+
+    .skip { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .skip:focus { left: 8px; top: 8px; width: auto; height: auto; padding: .4rem .6rem; background: #111827; color: white; border-radius: .4rem; }
+
+    /* Hero */
+    .hero { padding: 3.25rem 0 2.25rem; }
+    .hero h1 { font-family: "Playfair Display", Georgia, serif; font-weight: 700; line-height: 1.15; margin: 0 0 .6rem; font-size: clamp(1.8rem, 3.8vw + .6rem, 3rem); }
+    .hero p { color: var(--muted); margin: 0 0 1.25rem; max-width: 70ch; }
+    .cta { display: inline-flex; align-items: center; gap: .5rem; padding: .7rem 1rem; border-radius: 999px; background: var(--brand); color: #fff; border: none; cursor: pointer; font-weight: 700; }
+
+    /* Sections */
+    section { padding: 2.2rem 0; }
+    section h2 { font-family: "Playfair Display", Georgia, serif; font-size: clamp(1.3rem, 2.2vw + .6rem, 2rem); margin: 0 0 1rem; }
+
+    /* Cards */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column; }
+    .card .media { aspect-ratio: 16 / 9; background: #0b0b0b; }
+    .card .content { padding: 1rem; display: grid; gap: .5rem; }
+    .card h3 { margin: 0; font-size: 1.05rem; line-height: 1.35; }
+    .meta { color: var(--muted); font-size: .9rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tag { font-size: .75rem; padding: .2rem .5rem; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+    .btn-row { margin-top: .6rem; display: flex; align-items: center; gap: .5rem; }
+    .btn { padding: .5rem .8rem; border-radius: .5rem; border: 1px solid var(--border); background: var(--card); color: var(--text); font-weight: 600; cursor: pointer; }
+    .btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+
+    /* Featured */
+    .featured { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.2rem; align-items: center; }
+    .featured .copy { padding: 1rem; }
+    .featured h3 { font-size: clamp(1.2rem, 2vw + .8rem, 2rem); margin-top: 0; }
+    @media (max-width: 900px){ .featured { grid-template-columns: 1fr; } }
+
+    /* Filters */
+    .filters { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin-bottom: .8rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .chip { padding: .32rem .6rem; border-radius: 999px; border: 1px solid var(--border); background: var(--card); cursor: pointer; font-size: .85rem; }
+    .chip.active { background: color-mix(in srgb, var(--brand) 12%, var(--card)); border-color: var(--brand); color: var(--text); }
+    .search { flex: 1; min-width: 220px; }
+    .search input, .filters select { width: 100%; padding: .56rem .7rem; border: 1px solid var(--border); border-radius: .6rem; background: var(--card); color: var(--text); }
+
+    /* Article view */
+    #readerView { display: none; }
+    #readerView.active { display: block; }
+    .prose { max-width: 70ch; }
+    .prose h1, .prose h2, .prose h3 { font-family: "Playfair Display", Georgia, serif; }
+    .prose h1 { font-size: clamp(1.6rem, 2.2vw + 1rem, 2.4rem); }
+    .prose p { margin: 0 0 1em; }
+    .prose blockquote { border-left: 3px solid var(--brand); margin: 1rem 0; padding: .4rem .9rem; color: var(--muted); }
+
+    /* About */
+    .about { display: grid; grid-template-columns: 120px 1fr; gap: 1rem; align-items: center; }
+    .about img { width: 120px; height: 120px; border-radius: 14px; object-fit: cover; }
+    @media (max-width: 600px){ .about { grid-template-columns: 1fr; } }
+
+    /* Footer */
+    footer { padding: 2rem 0 3rem; color: var(--muted); border-top: 1px solid var(--border); }
+    .foot-grid { display: grid; grid-template-columns: 1fr; gap: .6rem; }
+    .sitemap { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* Focus & Hover states */
+    .card:hover { transform: translateY(-1px); transition: transform .15s ease; }
+    .btn:hover, .chip:hover { filter: brightness(1.02); }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" role="banner">
+    <div class="container nav" aria-label="Primary">
+      <a class="logo" href="#home" aria-label="Home">
+        <img id="siteLogo" alt="Site logo" src="https://raw.githubusercontent.com/gbengasaolu/eportfolio/main/OA%20LOGO.png" />
+        <span class="brand">Just Grow</span>
+      </a>
+      <nav class="nav-links" aria-label="Site">
+        <a href="#home">Home</a>
+        <a href="#articles">Articles</a>
+        <a href="#press">Press</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container" tabindex="-1">
+    <!-- Hero -->
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Motivation & Personal Growth</h1>
+      <p>Actionable insights, timeless principles, and stories that help you think bigger and grow stronger—personally and professionally.</p>
+      <button class="cta" onclick="document.querySelector('#articles').scrollIntoView({behavior:'smooth'})">Read the latest</button>
+    </section>
+
+    <!-- Featured (optional) -->
+    <section id="featured" aria-labelledby="featured-title" style="display:none;">
+      <h2 id="featured-title">Featured</h2>
+      <div class="featured card" id="featuredCard"></div>
+    </section>
+
+    <!-- Latest grid -->
+    <section id="latest" aria-labelledby="latest-title">
+      <h2 id="latest-title">Latest Articles</h2>
+      <div id="latestGrid" class="grid" role="list"></div>
+    </section>
+
+    <!-- All articles with filters -->
+    <section id="articles" aria-labelledby="all-title">
+      <h2 id="all-title">All Articles</h2>
+      <div class="filters" role="region" aria-label="Filters and search">
+        <div class="search" aria-label="Search articles">
+          <label class="sr-only" for="q"></label>
+          <input id="q" type="search" placeholder="Search title, tags, summary…" aria-label="Search"/>
+        </div>
+        <select id="sortSelect" aria-label="Sort">
+          <option value="new">Newest first</option>
+          <option value="old">Oldest first</option>
+        </select>
+        <div id="chips" class="chips" role="listbox" aria-label="Filter by tags"></div>
+      </div>
+      <div id="list" class="grid" role="list"></div>
+      <div class="btn-row">
+        <button id="loadMore" class="btn" aria-label="Load more articles">Load more</button>
+      </div>
+    </section>
+
+    <!-- Reader view (internal articles) -->
+    <section id="readerView" aria-live="polite" aria-labelledby="readerTitle">
+      <article class="prose">
+        <p><a href="#articles" class="btn" aria-label="Back to list">← Back</a></p>
+        <h1 id="readerTitle"></h1>
+        <p class="meta" id="readerMeta"></p>
+        <img id="readerImage" alt="" style="border-radius: var(--radius); margin: .6rem 0 1rem;" />
+        <div id="readerBody"></div>
+        <p class="btn-row"><a class="btn" href="#articles">Close</a></p>
+      </article>
+    </section>
+
+    <!-- Press & Mentions -->
+    <section id="press" aria-labelledby="press-title">
+      <h2 id="press-title">Press & Newspaper Mentions</h2>
+      <div id="pressList" class="grid"></div>
+    </section>
+
+    <!-- About / Contact -->
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About the Author</h2>
+      <div class="card about">
+        <img id="authorPhoto" alt="Author headshot" src="https://raw.githubusercontent.com/gbengasaolu/graph_courses_aiw/main/Gbenga%20Asaolu%20CEO%20Pose%201_May%202023.jpeg"/>
+        <div>
+          <p><strong>Dr. Olugbenga Asaolu</strong> is a public‑health scientist and motivational writer who helps people and teams unlock performance with clarity, discipline, and growth mindsets.</p>
+          <p class="meta">Connect: 
+            <a href="https://www.linkedin.com/in/dr-olugbenga-asaolu/" target="_blank" rel="noopener">LinkedIn</a> · 
+            <a href="https://x.com/dr_asaolu" target="_blank" rel="noopener">X</a> · 
+            <a href="https://www.facebook.com/gbengasaolu" target="_blank" rel="noopener">Facebook</a> · 
+            <a href="https://instagram.com/drgbengamotivates" target="_blank" rel="noopener">Instagram</a> · 
+            <a href="https://www.youtube.com/watch?v=Y-yZCn75ugk" target="_blank" rel="noopener">YouTube</a>
+          </p>
+          <div id="newsletter" class="meta"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <div class="card" style="padding:1rem;">
+        <p>For speaking, consulting, or media: <a href="mailto:contact@example.com">contact@example.com</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container foot-grid">
+      <div class="sitemap">
+        <a href="#home">Home</a>
+        <a href="#articles">Articles</a>
+        <a href="#press">Press</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <small>© <span id="year"></span> Just Grow. All rights reserved. · Privacy: No cookies beyond basic analytics. · Analytics placeholder below.</small>
+      </div>
+      <!-- Paste your analytics snippet here (e.g., Plausible, Google Analytics). -->
+    </div>
+  </footer>
+
+  <!-- =========================
+       CONTENT DATA (Edit here)
+       ========================= -->
+  <script id="site-data" type="application/json">
+  {
+    "site": {
+      "title": "Just Grow",
+      "tagline": "Motivation & Personal Growth by Dr. Olugbenga Asaolu",
+      "logo": "https://github.com/gbengasaolu/eportfolio/blob/main/OA%20LOGO.png",
+      "newsletterUrl": "#"  
+    },
+    "articles": [
+      {
+        "id": "just-grow",
+        "title": "Just Grow: How to Turn Rejection into Your Greatest Catalyst",
+        "date": "2025-07-27",
+        "tags": ["Mindset", "Resilience", "Growth"],
+        "featured": true,
+        "image": "https://github.com/gbengasaolu/website/blob/main/Just%20grow%201.png",
+        "summary": "A personal story of turning a setback into a season of disciplined growth—and how brutal honesty, deliberate investment, and consistent action change everything.",
+        "content_md": "Have you ever wanted something so much that you could almost taste it?\n\nIn 2019, I applied for my dream job. After submitting my application, I received a call from an insider. ‘We got your application!’ he said. I was so excited I barely heard the rest of what he said.\n\nWeeks turned into months. Then, before the year ended, I learned that someone else had been hired. There was no ambiguity. I knew the role, and I knew the person who got it. It wasn’t me.\n\nLike anyone facing a major disappointment, I wasn’t happy. But in that moment of sting, I told myself a truth: I hadn’t earned it yet. The other candidate had something I did not. That day, I chose a different response—not excuses, not bitterness, but growth.\n\nA mentor once shared a quote from Roy T. Bennett that stuck with me: ‘Never let the memories of your past limit the potential of your future. There are no limits to what you can achieve except in your mind.’\n\nI decided that if the gate didn’t open for me, I wouldn’t waste my energy kicking it down. I would outgrow it.\n\nSo, I made a commitment. Every year, I would invest at least **10%** of my income in personal development—courses, books, and coaching. I would also earn at least **two new certifications** annually. This wasn’t about decorating my résumé; it was about fundamentally transforming my capabilities. I stopped waiting for opportunities and started training to create them.\n\n### Three principles that fueled my growth\n1. **Embrace Brutal Honesty.** I stopped asking, ‘Why didn’t they pick me?’ and started asking, ‘What would make me undeniable?’ Honesty can hurt, but it also heals. It reveals the gap between where you are and where you want to be, giving you a blueprint to build the bridge.\n2. **Make Deliberate Investments.** Goals without deposits are just wishes. That 10% annual investment wasn’t an expense; it was a seed. And seeds don’t complain about being in the dark—they use the soil and silence to grow. True commitment requires a tangible investment of time, money, or both.\n3. **Take Consistent Action.** We all know the saying: If you are persistent, you will get it; if you are consistent, you will keep it. Persistence gets you to the door. Consistency keeps you in the room. It’s the daily, unglamorous work that builds unstoppable momentum.\n\nFast forward to 2023. The person who had gotten my dream job in 2019 moved abroad, and the position opened again. I applied—same organization, same function, but **not the same me**. This time, I landed the role I hadn’t even been invited to interview for years earlier.\n\nThen, something unexpected happened: within a year, I outgrew that dream and stepped into an even better opportunity.\n\nOg Mandino wrote, ‘The important thing is that we must be constantly moving forward—the progressive realization of a predetermined goal. And our growth should never end.’ This is the secret I discovered: fulfilled dreams are not finish lines; they are trail markers on a much longer journey. When you commit to growth, you don’t just reach your goals—you raise them.\n\nRalph Waldo Emerson said, ‘The only person you are destined to become is the person you decide to be.’ Deciding isn’t a one‑time event; it’s a daily practice. It’s the book you read after work. It’s the course you take when it’s inconvenient. It’s the feedback you not only ask for but use. It’s choosing direction over distraction and progress over perfection.\n\nAs George Bernard Shaw put it, ‘Life isn’t about finding yourself. Life is about creating yourself.’ We don’t stumble into our best future; we sculpt it, day by day.\n\nMaybe you didn’t get the role. Maybe a door just closed. Maybe a voice in your head whispers that you’re too late.\n\nYou’re not late. You’re just in your **planting season**.\n\nSo, what seed can you plant today? What one truth will you face? What one investment will you make? What one action will you repeat?\n\nPromotions can be taken away. Growth cannot. Titles expire. Transformation compounds. Let’s stop waiting for the world to make room for us—and start growing until the room can no longer contain us.\n\n**Don’t just go for it. Grow for it.**"
+      },
+      {
+        "id": "success-is-not-in-the-land",
+        "title": "Success Is Not In The Land, It Is In The Mind",
+        "date": "2020-01-01",
+        "tags": ["Mindset", "Inspiration"],
+        "external_url": "https://www.motivation-for-dreamers.com/success-is-not-in-the-land-it-is-in-the-mind.html",
+        "summary": "Why inner beliefs shape outer results—and how to cultivate a winning mindset."
+      },
+      {
+        "id": "anything-you-can-do",
+        "title": "Anything Any Man Can Do You Can Do",
+        "date": "2020-01-02",
+        "tags": ["Confidence", "Inspiration"],
+        "external_url": "https://www.motivation-for-dreamers.com/anything-any-man-can-do-you-can-do.html",
+        "summary": "Confidence is a skill. Practical ways to build it and act decisively."
+      },
+      {
+        "id": "be-a-genius",
+        "title": "HOW TO BE A GENIUS",
+        "date": "2020-01-03",
+        "tags": ["Learning", "Productivity"],
+        "external_url": "https://www.facebook.com/groups/freshmotivations/posts/716457005070399/",
+        "summary": "Daily habits that compound into uncommon results."
+      },
+      {
+        "id": "anything-you-can-do-afripreneur",
+        "title": "ANYTHING ANY MAN CAN DO, YOU CAN DO!",
+        "date": "2020-01-04",
+        "tags": ["Confidence", "Mindset"],
+        "external_url": "https://www.facebook.com/groups/Afripreneur/posts/235075563230509/",
+        "summary": "Stories and principles that reset your self‑image."
+      },
+      {
+        "id": "you-shall-end-well",
+        "title": "You shall end well",
+        "date": "2020-01-05",
+        "tags": ["Hope", "Resilience"],
+        "external_url": "https://www.linkedin.com/pulse/you-shall-end-well-olugbenga-asaolu-mph-frsph-uk-/",
+        "summary": "How to stay steady when the path looks uncertain."
+      },
+      {
+        "id": "achieve-your-goals",
+        "title": "Achieve Your Goals with Dr Gbenga Asaolu (Video)",
+        "date": "2020-01-06",
+        "tags": ["Goals", "Focus"],
+        "external_url": "https://www.youtube.com/watch?v=Y-yZCn75ugk",
+        "summary": "A concise framework for moving from intention to impact."
+      },
+      {
+        "id": "power-beyond-limitations",
+        "title": "You have the power to succeed beyond limitations",
+        "date": "2020-01-07",
+        "tags": ["Mindset", "Resilience"],
+        "external_url": "https://www.facebook.com/groups/freshmotivations/posts/437480042968098/",
+        "summary": "Choosing growth over excuses—every single day."
+      }
+    ],
+    "press": [
+      {
+        "outlet": "The Nation",
+        "headline": "From Raw Data to Public Health Insight: An Exclusive Interview with Dr. Olugbenga Stephen Asaolu",
+        "date": "",
+        "url": "https://thenationonlineng.net/from-raw-data-to-public-health-insight-an-exclusive-interview-with-dr-olugbenga-stephen-asaolu/"
+      },
+      {
+        "outlet": "The Guardian",
+        "headline": "Digital health: How to turn data into life‑saving insights",
+        "date": "",
+        "url": "https://guardian.ng/features/digital-health-how-to-turn-data-into-life-saving-insights/"
+      },
+      {
+        "outlet": "Leadership Newspapers",
+        "headline": "Public Health Expert Dr. Olugbenga Stephen Asaolu Propels Nigeria’s Research Data Revolution",
+        "date": "",
+        "url": "https://leadership.ng/public-health-expert-dr-olugbenga-stephen-asaolu-propels-nigerias-research-data-revolution/"
+      }
+    ]
+  }
+  </script>
+
+  <!-- =========================
+       JS (Rendering, filters, router)
+       ========================= -->
+  <script>
+    const $$ = (sel, ctx=document) => ctx.querySelector(sel);
+    const $$$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+
+    // Convert GitHub blob URLs to raw for img reliability
+    const toRaw = (url) => {
+      if(!url) return url;
+      try {
+        const u = new URL(url);
+        if (u.hostname === 'github.com' && u.pathname.includes('/blob/')) {
+          const parts = u.pathname.split('/').filter(Boolean); // [user, repo, blob, branch, ...path]
+          const user = parts[0], repo = parts[1], branch = parts[3];
+          const path = parts.slice(4).join('/');
+          return `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${path}`;
+        }
+        return url;
+      } catch { return url; }
+    };
+
+    // State
+    const raw = JSON.parse(document.getElementById('site-data').textContent);
+    const SITE = {
+      ...raw,
+      articles: raw.articles.map(a => ({...a, image: toRaw(a.image)})),
+      site: { ...raw.site, logo: toRaw(raw.site.logo) }
+    };
+
+    // Theme
+    const themeBtn = document.getElementById('themeToggle');
+    const setTheme = (t) => {
+      document.documentElement.setAttribute('data-theme', t);
+      themeBtn.setAttribute('aria-pressed', t === 'dark');
+      themeBtn.textContent = t === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('theme', t);
+    };
+    themeBtn.addEventListener('click', () => setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+    setTheme(localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+
+    // Header logo text & hero
+    document.title = `${SITE.site.title} – Motivation & Personal Development`;
+    $$('#siteLogo').src = SITE.site.logo ? toRaw(SITE.site.logo) : $$('#siteLogo').src;
+
+    // Newsletter placeholder
+    if (SITE.site.newsletterUrl && SITE.site.newsletterUrl !== '#') {
+      $$('#newsletter').innerHTML = `Want new posts by email? <a href="${SITE.site.newsletterUrl}" target="_blank" rel="noopener">Subscribe to the newsletter</a>.`;
+    } else {
+      $$('#newsletter').innerHTML = `Newsletter coming soon.`;
+    }
+
+    // Featured
+    const featured = SITE.articles.find(a => a.featured && !a.external_url);
+    if (featured) {
+      const el = $$('#featuredCard');
+      el.innerHTML = `
+        <img class="media" alt="Featured image" src="${featured.image || ''}">
+        <div class="copy">
+          <div class="tags">${(featured.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+          <h3>${featured.title}</h3>
+          <p class="meta">${new Date(featured.date).toLocaleDateString()}</p>
+          <p>${featured.summary || ''}</p>
+          <div class="btn-row">
+            <a class="btn primary" href="#article/${featured.id}">Read</a>
+          </div>
+        </div>`;
+      $$('#featured').style.display = '';
+    }
+
+    // Latest (6 newest by date)
+    const byDateDesc = (a,b) => new Date(b.date) - new Date(a.date);
+    const latest = [...SITE.articles].sort(byDateDesc).slice(0,6);
+    const latestGrid = $$('#latestGrid');
+    latest.forEach(a => latestGrid.appendChild(articleCard(a)));
+
+    // Build tag list
+    const TAGS = Array.from(new Set(SITE.articles.flatMap(a=>a.tags||[]))).sort();
+    const chips = $$('#chips');
+    TAGS.forEach(tag => {
+      const c = document.createElement('button');
+      c.className = 'chip';
+      c.type = 'button';
+      c.textContent = tag; c.dataset.tag = tag;
+      c.addEventListener('click', () => {
+        c.classList.toggle('active');
+        state.page = 1; renderList();
+      });
+      chips.appendChild(c);
+    });
+
+    // All list with search & sort & load more
+    const state = { page: 1, size: 9, q: '', sort: 'new' };
+    $$('#q').addEventListener('input', (e)=>{ state.q = e.target.value.toLowerCase(); state.page = 1; renderList(); });
+    $$('#sortSelect').addEventListener('change', (e)=>{ state.sort = e.target.value; state.page = 1; renderList(); });
+    $$('#loadMore').addEventListener('click', ()=>{ state.page++; renderList(); });
+
+    function articleCard(a){
+      const el = document.createElement('article');
+      el.className = 'card'; el.setAttribute('role','listitem');
+      el.innerHTML = `
+        ${a.image ? `<img class="media" alt="" src="${a.image}">` : ''}
+        <div class="content">
+          <div class="tags">${(a.tags||[]).map(t=>`<span class='tag'>${t}</span>`).join('')}</div>
+          <h3>${a.title}</h3>
+          <div class="meta">${a.date ? new Date(a.date).toLocaleDateString() : ''}</div>
+          <p>${a.summary || ''}</p>
+          <div class="btn-row">
+            ${a.external_url ? `<a class="btn primary" href="${a.external_url}" target="_blank" rel="noopener">Read</a>` : `<a class="btn primary" href="#article/${a.id}">Read</a>`}
+          </div>
+        </div>`;
+      return el;
+    }
+
+    function renderList(){
+      let arr = [...SITE.articles];
+      // filter by chips
+      const activeTags = $$$('.chip.active').map(c=>c.dataset.tag);
+      if (activeTags.length) arr = arr.filter(a => (a.tags||[]).some(t => activeTags.includes(t)));
+      // search
+      if (state.q) arr = arr.filter(a => [a.title, a.summary, (a.tags||[]).join(' ')].join(' ').toLowerCase().includes(state.q));
+      // sort
+      arr.sort(state.sort === 'new' ? byDateDesc : (a,b)=> new Date(a.date) - new Date(b.date));
+
+      // pagination
+      const total = arr.length;
+      const slice = arr.slice(0, state.page * state.size);
+      const grid = $$('#list'); grid.innerHTML = '';
+      slice.forEach(a => grid.appendChild(articleCard(a)));
+      $$('#loadMore').style.display = slice.length < total ? '' : 'none';
+    }
+    renderList();
+
+    // Press render
+    const pressWrap = $$('#pressList');
+    SITE.press.forEach(p => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="content">
+          <div class="tags"><span class="tag">${p.outlet}</span></div>
+          <h3>${p.headline}</h3>
+          <div class="meta">${p.date || ''}</div>
+          <div class="btn-row"><a class="btn primary" href="${p.url}" target="_blank" rel="noopener">Read</a></div>
+        </div>`;
+      pressWrap.appendChild(card);
+    });
+
+    // Reader (internal articles via hash #article/:id)
+    function openArticle(id){
+      const a = SITE.articles.find(x=>x.id===id);
+      if(!a){ location.hash = '#articles'; return; }
+      $$('#readerTitle').textContent = a.title;
+      $$('#readerMeta').textContent = `${a.date ? new Date(a.date).toLocaleDateString() : ''} · ${(a.tags||[]).join(', ')}`;
+      const img = $$('#readerImage');
+      if (a.image){ img.src = a.image; img.alt = a.title; img.style.display=''; } else { img.removeAttribute('src'); img.style.display='none'; }
+      // Render markdown safely via Marked
+      const html = window.marked ? window.marked.parse(a.content_md || '') : (a.content_md || '').replace(/\n/g,'<br>');
+      $$('#readerBody').innerHTML = html;
+      $$('#readerView').classList.add('active');
+      // Hide main lists when reading
+      ['featured','latest','articles','press','about','contact'].forEach(id => { const s = document.getElementById(id); if(s) s.style.display='none'; });
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+    function closeReader(){
+      $$('#readerView').classList.remove('active');
+      ['featured','latest','articles','press','about','contact'].forEach(id => { const s = document.getElementById(id); if(s) s.style.display=''; });
+    }
+
+    function handleHash(){
+      const h = location.hash;
+      if (h.startsWith('#article/')) { openArticle(h.split('/')[1]); }
+      else { closeReader(); }
+    }
+    window.addEventListener('hashchange', handleHash);
+    handleHash();
+
+    // Footer year
+    $$('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
